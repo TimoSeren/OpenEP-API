@@ -56,7 +56,7 @@ Copy `.env.example` to `.env` and configure:
 
 | Variable | Description |
 |----------|-------------|
-| `DATABASE_URL` | Database connection string (default: `sqlite:///./data.db`) |
+| `DATABASE_URL` | Database connection string — SQLite (default) or PostgreSQL (see below) |
 | `FB_APP_ID` | Firebase App ID |
 | `FB_API_KEY` | Firebase API Key |
 | `FB_PROJECT_ID` | Firebase Project ID |
@@ -112,6 +112,20 @@ Copy `.env.example` to `.env` and configure:
 | GET | `/` | API info |
 | GET | `/health` | Health check |
 | GET | `/docs` | Swagger UI |
+
+## Database
+
+By default the app uses **SQLite** (no setup required). To use **PostgreSQL**, set `DATABASE_URL` accordingly:
+
+```
+DATABASE_URL=postgresql://user:password@host:5432/dbname
+```
+
+The app automatically uses the async `asyncpg` driver — no further changes needed. Tables are created automatically on startup.
+
+### Dokploy / Railway / Render
+
+Add a PostgreSQL service in your hosting provider and copy the connection string into the `DATABASE_URL` environment variable. Make sure to use the `postgresql://` scheme (not `postgresql+asyncpg://` — the app handles the conversion).
 
 ## Deployment
 
