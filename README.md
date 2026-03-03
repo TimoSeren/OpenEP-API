@@ -115,20 +115,17 @@ Copy `.env.example` to `.env` and configure:
 
 ## Deployment
 
-### Docker
+### Dokploy
 
-```bash
-docker build -t europapark-api .
-docker run -p 8000:8000 --env-file .env europapark-api
-```
+The project includes a [`nixpacks.toml`](nixpacks.toml) that Dokploy picks up automatically.
 
-### Nixpacks
+1. **Create Application** — In Dokploy, create a new Application and connect your Git repository.
+2. **Build Type** — Select **Nixpacks** as the build provider.
+3. **Environment Variables** — Go to the *Environment* tab and add all variables from the [Configuration](#configuration) table above.
+4. **Port** — Set the exposed port to `8000` (or let Dokploy inject `PORT` automatically — the start command already uses `${PORT:-8000}`).
+5. **Deploy** — Trigger a deploy. Dokploy will build via Nixpacks and start the server.
 
-```bash
-nixpacks build . -o out
-```
-
-### Production
+### Production (manual)
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4
