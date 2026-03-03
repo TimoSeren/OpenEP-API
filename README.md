@@ -56,12 +56,19 @@ Copy `.env.example` to `.env` and configure:
 
 | Variable | Description |
 |----------|-------------|
-| `DATABASE_URL` | Database connection string (default: SQLite) |
+| `DATABASE_URL` | Database connection string (default: `sqlite:///./data.db`) |
 | `FB_APP_ID` | Firebase App ID |
 | `FB_API_KEY` | Firebase API Key |
 | `FB_PROJECT_ID` | Firebase Project ID |
-| `ENC_KEY` | Encryption key for credential decryption |
-| `ENC_IV` | Encryption initialization vector |
+| `API_BASE` | Europapark API base URL |
+| `AUTH_URL` | OAuth2 token endpoint URL |
+| `ENC_KEY` | Blowfish encryption key for Remote Config decryption |
+| `ENC_IV` | Blowfish encryption IV |
+| `USER_KEY` | Remote Config key name for the API username |
+| `PASS_KEY` | Remote Config key name for the API password |
+| `API_USERNAME` | Fallback API username (if Remote Config is unavailable) |
+| `API_PASSWORD` | Fallback API password (if Remote Config is unavailable) |
+| `APP_VERSION` | Europapark app version string |
 
 ## API Endpoints
 
